@@ -23,7 +23,7 @@ def iou(y_true, y_pred, threshold=0.5):
 
 def weighted_loss(y_true, y_pred):
     """Binary Crossentropy + Dice loss with weighting"""
-    alpha = 0.3  # Increase weight of positive pixels
+    alpha = 0.45  # Increase weight of positive pixels
     bce = tf.keras.losses.binary_crossentropy(y_true, y_pred)
     dice = 1 - (2 * tf.reduce_sum(y_true * y_pred) + 1e-6) / (tf.reduce_sum(y_true) + tf.reduce_sum(y_pred) + 1e-6)
     return alpha * bce + (1 - alpha) * dice  # Weighted combination
